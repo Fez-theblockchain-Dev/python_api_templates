@@ -6,10 +6,11 @@ from uuid import UUID
 import json
 from flask_restful import Resource, Api
 
+# --- Setup ---
 app = Flask(__name__)
-api = Api(app)
+app.json_provider_class = CustomJSONProvider
+app.json = CustomJSONProvider(app)
 
-db = ('')
 
 config = {
     "DEBUG": True,
@@ -78,12 +79,6 @@ class CustomJSONProvider(DefaultJSONProvider):
             return obj.decode("utf-8")
         
         return super().default(obj)
-
-
-# --- Setup ---
-app = Flask(__name__)
-app.json_provider_class = CustomJSONProvider
-app.json = CustomJSONProvider(app)
 
 
 # --- Usage in a route ---
