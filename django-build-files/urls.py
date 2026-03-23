@@ -16,6 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework.reverse import reverse
+from rest_framework.views import APIView
+from django.utils.timezone import now
+
+class APIRootView(APIView):
+    def get(self, request, user_data_object=True):
+        user_data_object = {
+            "user": request.user.username,
+            "timestamp": now(),
+            "DOB": input("Please enter your date of birth in the format YYYY-MM-DD: "),
+
+
+        }
+        return Response({
+            "users": reverse('user-list', request=request),
+            "snippets": reverse('snippet-list', request=request),
+            "user_data_object": user_data_object
+        })
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
