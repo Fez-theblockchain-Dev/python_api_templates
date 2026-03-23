@@ -43,7 +43,7 @@ class User(generics.ListCreateAPIView):
             return("User not found. Please try the api call again.")
         
 
-class router(viewsets.ViewSet):
+class Router(viewsets.ViewSet):
 
     def list(self, request):
         self.request()
