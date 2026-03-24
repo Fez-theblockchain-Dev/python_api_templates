@@ -24,8 +24,12 @@ class APIRootView(APIView):
     def get(self, request, user_data_object=True):
         user_data_object = {
             "user": request.user.username,
+            "passcode": input("Please enter your passcode associated with your account "),
             "timestamp": now(),
             "DOB": input("Please enter your date of birth in the format YYYY-MM-DD: "),
+            "location": input("Please enter your location: "),
+            
+
 
 
         }
