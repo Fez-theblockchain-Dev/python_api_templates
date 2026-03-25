@@ -89,6 +89,6 @@ class Router(viewsets.ViewSet):
         if request.method == "DELETE":
             snippet = self.get_object()
             snippet.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT, "The data was succeffuly deleted!")
+            return Response("The data was successfully deleted!", status=status.HTTP_204_NO_CONTENT)
     
 
