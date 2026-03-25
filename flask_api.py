@@ -3,7 +3,7 @@ from flask.json.provider import DefaultJSONProvider
 from datetime import datetime, date, timezone
 from decimal import Decimal
 from uuid import UUID
-import json
+from flask.json import json_provider_class
 from flask_restful import Resource, Api
 
 # --- Setup ---

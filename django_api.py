@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from myapp.serializers import UserSerializer
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
+from django_api import UserSerializer, routers, viewsets, action
+
 
 
 @api_view(["GET", "POST"])
@@ -43,10 +45,14 @@ class User(generics.ListCreateAPIView):
             return("User not found. Please try the api call again.")
         
 
-class Router(viewsets.ViewSet):
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-    def list(self, request):
-        self.request()
+   
+# Routers provide an easy way of automatically determining the URL conf.
+    router = routers.DefaultRouter()
+    router.register(r"users", UserViewSet)
 
     @action(detail=True, methods=['post'])
     def set_password(self, request, pk=None):
