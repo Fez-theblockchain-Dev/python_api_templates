@@ -46,6 +46,13 @@ class User(generics.ListCreateAPIView):
         
 
 class UserViewSet(viewsets.ModelViewSet):
+    def __init__(self, *args, **kwargs):
+        self.args = args
+        self.kwargs = kwargs
+        return
+    
+        
+    
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
