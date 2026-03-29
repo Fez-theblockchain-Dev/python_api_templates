@@ -44,15 +44,8 @@ class User(generics.ListCreateAPIView):
         except:
             return("User not found. Please try the api call again.")
         
-
+# This class defines how the user views from the forum will look on the database querying side. 
 class UserViewSet(viewsets.ModelViewSet):
-    def __init__(self, *args, **kwargs):
-        self.args = args
-        self.kwargs = kwargs
-        return
-    
-        
-    
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
