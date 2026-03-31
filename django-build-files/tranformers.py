@@ -1,4 +1,4 @@
-class BaseTransform(object):
+class BaseTransform(UserViewSet):
     """
     All transforms should extend 'BaseTransform', overriding the two
     methods '.forwards()' and '.backwards()' to provide forwards and backwards
