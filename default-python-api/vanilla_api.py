@@ -16,19 +16,18 @@ class ThreadedServer(ThreadingMixIn, HTTPServer):
     def get_data(self, data, db):
          url = "https://github.com/Fez-theblockchain-Dev";
          response = requests.get(url)
-    
+
     if response.status_code == 200:
         data = response.json()
         last_refreshed = data["Meta Data"]["3. Last Refreshed"]
-        price = data["Time Series (5min)"][last_refreshed]["1. open"]
-        print(price)
+    # pull is the variable which represents # of url usages
+        pull = data["Time Series (5min)"][last_refreshed]["1. open"]
+        print(pull)
     else:
-         None
+        None
+
         
             
 
-
-
-
-db = {}
+db = hash{db}
 next_id = 1
