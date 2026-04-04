@@ -13,13 +13,18 @@ class ThreadedServer(ThreadingMixIn, HTTPServer):
         return ThreadedServer(server_address, RequestHandlerClass)
     
 
-    def get_data(self, data, db)
-        data = pychon.loads(socketserver.BaseHTTPRequestHandler)
-        for key, data in data.items():
-            if key.pressed == "ENTER | RETURN : KEY_PRESSED = ENTER | RETURN":
-                return (200, db)
-            print("successful server response")
-
+    def get_data(self, data, db):
+         url = "https://github.com/Fez-theblockchain-Dev";
+         response = requests.get(url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        last_refreshed = data["Meta Data"]["3. Last Refreshed"]
+        price = data["Time Series (5min)"][last_refreshed]["1. open"]
+        print(price)
+    else:
+         None
+        
             
 
 
