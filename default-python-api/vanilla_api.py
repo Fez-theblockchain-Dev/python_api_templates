@@ -13,18 +13,17 @@ class ThreadedServer(ThreadingMixIn, HTTPServer):
         return ThreadedServer(server_address, RequestHandlerClass)
     
 
-    def get_data(self, data, db):
-         url = "https://github.com/Fez-theblockchain-Dev";
-         response = requests.get(url)
-
-    if response.status_code == 200:
-        data = response.json()
-        last_refreshed = data["Meta Data"]["3. Last Refreshed"]
-    # pull is the variable which represents # of url usages
-        pull = data["Time Series (5min)"][last_refreshed]["1. open"]
-        print(pull)
-    else:
-        None
+    def get_data(self, data, db, response):
+        url = "https://github.com/Fez-theblockchain-Dev";
+        if response.status_code == 200:
+            data = response.json()
+            last_refreshed = data["Meta Data"]["3. Last Refreshed"]
+            response = requests.get(url)
+        # pull is the variable which represents # of url usages
+            pull = data["Time Series (5min)"][last_refreshed]["1. open"]
+            print(pull)
+        else:
+            None
 
         
             
