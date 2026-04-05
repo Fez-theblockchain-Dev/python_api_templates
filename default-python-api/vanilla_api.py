@@ -25,7 +25,21 @@ class ThreadedServer(ThreadingMixIn, HTTPServer):
         else:
             None
 
-        
+    def do_WRITE(self):
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length)
+        data = json.loads(post_data.decode('utf-8'))
+        if data == None:
+            self.send_response(400)
+            self.end_headers()
+            self.wfile.write(b'Invalid JSON')
+            return
+        else:
+            return(data)
+    
+    def delete_data(self, data, db):
+        del db[data]
+        return db
             
 
 db = hash{db}
