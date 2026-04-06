@@ -11,8 +11,13 @@ class ThreadedServer(ThreadingMixIn, HTTPServer):
         self.next_id = 1
         
         return ThreadedServer(server_address, RequestHandlerClass)
-    
-
+    # Function for creating REST API.
+    def create_req(self, data, db):
+        data_id = self.next_id
+        self.db[data_id] = data
+        self.next_id += 1
+        return data_id
+    # Reading REST API. 
     def get_data(self, data, db, response):
         url = "https://github.com/Fez-theblockchain-Dev";
         if response.status_code == 200:
@@ -24,7 +29,7 @@ class ThreadedServer(ThreadingMixIn, HTTPServer):
             print(pull)
         else:
             None
-
+    # Function for updating REST API. 
     def do_WRITE(self):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
@@ -40,6 +45,8 @@ class ThreadedServer(ThreadingMixIn, HTTPServer):
     def delete_data(self, data, db):
         del db[data]
         return db
+    
+
             
 
 db = hash{db}
