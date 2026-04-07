@@ -19,16 +19,11 @@ config = {
 }
 
 app = Flask(__name__)
-api = Api(app)
+class Greeting(Resource):
+    def __str__(self):
+        print('Greetings Earthlings')
 
-class Hello(Resource):
-    def get(self):
-        return({'message': 'Greetings Earthlings'})
-
-class Square(Resource):
-    def get(self, num):
-        return ({'square': num ** 2})
-    
+ 
 
     """ This comment OUTLINES WHAT THE CustomJsonProvider class is doing on line
         Packages API request data into a standardized JSON response structure.
